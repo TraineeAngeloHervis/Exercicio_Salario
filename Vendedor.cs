@@ -1,11 +1,28 @@
 namespace Exercicio_Salario;
 
-public class Vendedor(string nome, string valorHora, int horasTrabalhadas, float valorVendasEmDinheiro, float comissao, float salario)
+public class Vendedor : IVendedor
 {
-    public string Nome { get; private set; } = nome;
-    public string ValorHora { get; private set; } = valorHora;
-    public int HorasTrabalhadas { get; private set; } = horasTrabalhadas;
-    public float ValorVendasEmDinheiro { get; private set; } = valorVendasEmDinheiro;
-    public float Comissao { get; private set; } = comissao;
-    public float SalarioTotal { get; private set; } = salario;
+    public string Cpf { get; set; }
+    public string CnpjEmpresa { get; set; }
+    public string Nome { get; set; }
+    public decimal TotalVendas { get; set; }
+    public int HorasTrabalhadas { get; set; }
+    public decimal ValorPorHora { get; set; }
+    public decimal ValorComissao { get; set; } = 0.15m;
+
+    public string ListarInfosVendedor()
+    {
+        return $"Nome: {Nome}\n" +
+               $"CPF: {Cpf}\n" +
+               $"CNPJ da Empresa: {CnpjEmpresa}" +
+               $"\nTotal de Vendas: {TotalVendas}" +
+               $"\nHoras Trabalhadas: {HorasTrabalhadas}" +
+               $"\nValor por Hora: {ValorPorHora}";
+    }
+    public void AtualizarSalario(decimal totalVendas, int horasTrabalhadas, decimal valorPorHora)
+    {
+        TotalVendas = totalVendas;
+        HorasTrabalhadas = horasTrabalhadas;
+        ValorPorHora = valorPorHora;
+    }
 }

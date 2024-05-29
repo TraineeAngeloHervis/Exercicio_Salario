@@ -2,12 +2,13 @@
 
 public interface IVendedor
 {
-    string Nome { get; }
-    string ValorHora { get; }
-    int HorasTrabalhadas { get; }
-    float ValorVendasEmDinheiro { get; }
-    float Comissao { get; }
-    float SalarioTotal { get; }
-    
-    double CalcularSalario();
+    string Cpf { get; set; }
+    string CnpjEmpresa { get; set; }
+    string Nome { get; set; }
+    decimal TotalVendas { get; set; }
+    int HorasTrabalhadas { get; set; }
+    decimal ValorPorHora { get; set; }
+    decimal ValorComissao { get; set; }
+    string ListarInfosVendedor();
+    void AtualizarSalario(decimal totalVendas, int horasTrabalhadas, decimal valorPorHora);
 }
