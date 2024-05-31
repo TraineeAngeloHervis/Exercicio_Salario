@@ -1,28 +1,26 @@
 namespace Exercicio_Salario
 {
-    public class Salario
+    public class Salario(decimal salarioTotal) : ISalario
     {
-        public string CnpjEmpresa { get; }
-        public string CpfVendedor { get; }
-        private decimal ValorComissao { get; set; }
-        public decimal SalarioTotal { get; private set; }
-        
-        private readonly IVendedor _vendedor;
-        
-        public Salario(IVendedor vendedor)
+        public decimal SalarioTotal { get; set; } = salarioTotal;
+
+        public Empresa empresa = new("123456789", "Empresa");
+
+        public string CalcularSalario()
         {
-            _vendedor = vendedor;
+            foreach (var vendedor in empresa.Vendedores)
+            {
+                SalarioTotal = vendedor.TotalVendas * vendedor.ValorComissao + vendedor.HorasTrabalhadas * vendedor.ValorPorHora;
+            }
+            return $"Salário Total: {SalarioTotal}";
         }
-        
-        public void CalcularSalario()
+
+        public string AtualizarSalario(decimal salarioTotal)
         {
-            ValorComissao = _vendedor.TotalVendas * _vendedor.ValorComissao;
-            SalarioTotal = _vendedor.HorasTrabalhadas * _vendedor.ValorPorHora + ValorComissao;
-        }
-        
-        public void AtualizarSalario(decimal totalVendas, int horasTrabalhadas, decimal valorPorHora)
-        {
-            _vendedor.AtualizarSalario(totalVendas, horasTrabalhadas, valorPorHora);
+            SalarioTotal = salarioTotal;
+            CalcularSalario();
+            return $"Salário Total Atualizado: {SalarioTotal}";
         }
     }
 }
+
