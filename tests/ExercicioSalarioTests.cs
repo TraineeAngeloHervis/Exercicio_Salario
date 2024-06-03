@@ -10,12 +10,11 @@ namespace Exercicio_Salario
         public void Salario_CalcularSalario_DeveRetornarSalarioTotal()
         {
             // Arrange
-            ISalario salario = new Salario(0);
             empresa.AdicionarVendedor(new Vendedor("123456789", "123456789", "Ângelo", 1000, 40, 10));
 
             // Act
             var resultado = empresa.Vendedores[0].CalcularSalario();
-            var resultadoEsperado = "Salário Total: 550,00";
+            const string resultadoEsperado = "Salário Total: 550,00";
 
             // Assert
             Assert.Equal(resultadoEsperado, resultado);
@@ -30,7 +29,7 @@ namespace Exercicio_Salario
 
             // Act
             var resultado = salario.AtualizarSalario(2000);
-            var resultadoEsperado = "Salário Total Atualizado: 2000";
+            const string resultadoEsperado = "Salário Total Atualizado: 2000";
 
             // Assert
             Assert.Equal(resultadoEsperado, resultado);
@@ -44,7 +43,7 @@ namespace Exercicio_Salario
 
             // Act
             var resultado = empresa.Vendedores.Count;
-            var resultadoEsperado = 1;
+            const int resultadoEsperado = 1;
 
             // Assert
             Assert.Equal(resultadoEsperado, resultado);

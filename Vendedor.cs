@@ -20,9 +20,7 @@ namespace Exercicio_Salario
         {
             return $"Salário Total Atualizado: {salarioTotal}";
         }
-
-
-
+        
         public string ListarInfosVendedor()
         {
             return $"Nome: {Nome}\n" +

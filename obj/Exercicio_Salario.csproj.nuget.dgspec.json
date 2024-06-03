@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\keity\\OneDrive\\Documentos\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj": {}
+    "C:\\Users\\angelo.hervis\\Documents\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj": {}
   },
   "projects": {
-    "C:\\Users\\keity\\OneDrive\\Documentos\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj": {
+    "C:\\Users\\angelo.hervis\\Documents\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\keity\\OneDrive\\Documentos\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj",
+        "projectUniqueName": "C:\\Users\\angelo.hervis\\Documents\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj",
         "projectName": "Exercicio_Salario",
-        "projectPath": "C:\\Users\\keity\\OneDrive\\Documentos\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj",
-        "packagesPath": "C:\\Users\\keity\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\keity\\OneDrive\\Documentos\\GitHub\\Exercicio_Salario\\obj\\",
+        "projectPath": "C:\\Users\\angelo.hervis\\Documents\\GitHub\\Exercicio_Salario\\Exercicio_Salario.csproj",
+        "packagesPath": "C:\\Users\\angelo.hervis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\angelo.hervis\\Documents\\GitHub\\Exercicio_Salario\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\keity\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\angelo.hervis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -39,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
