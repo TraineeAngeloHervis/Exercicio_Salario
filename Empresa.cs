@@ -4,25 +4,19 @@
     {
         public string Cnpj { get; private set; } = cnpj;
         public string Nome { get; private set; } = nome;
-        public List<IVendedor> Vendedores { get; set; } = [];
+        public List<Vendedor> Vendedores { get; set; } = [];
 
-        public void AdicionarVendedor(IVendedor vendedor)
+        public void AdicionarVendedor(Vendedor vendedor)
         {
-            vendedor.CnpjEmpresa = Cnpj;
             Vendedores.Add(vendedor);
         }
-        public void RemoverVendedor(IVendedor vendedor)
+        public void RemoverVendedor(Vendedor vendedor)
         {
             Vendedores.Remove(vendedor);
         }
         public string ListarVendedores()
         {
-            var listaVendedores = "";
-            foreach (var vendedor in Vendedores)
-            {
-                listaVendedores += vendedor.ListarInfosVendedor() + "\n";
-            }
-            return listaVendedores;
+            return Vendedores.Aggregate("", (current, vendedor) => current + (vendedor.ListarInfosVendedor() + "\n"));
         }
     }
 }

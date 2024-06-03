@@ -22,3 +22,14 @@ Empresa.cs,0\6\06f42f6ac9976e4758fd5ac56a1894830400ef6e
 ISalario.cs,2\e\2eec527527a74a9e7eb3650f8e7278c91879933d
 N
 tests/ExercicioSalarioTests.cs,4\5\454bf91dfc0642981029d505efe3b1f6256e8b63
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+9
+	Vendas.cs,5\0\50449b1c804ba1a7e19c8d5dca413fa25c623b6b
+D
+tests/VendasTests.cs,5\8\58d32d5b9cadd26895015735832b4f11518e337f
+F
+tests/VendedorTests.cs,1\6\16c8374d1b10b6a878e1a7fed73668a57ac0b81b
+E
+tests/EmpresaTests.cs,2\d\2d48e9d5822ebd784fc2793a5a10507083105cc0
