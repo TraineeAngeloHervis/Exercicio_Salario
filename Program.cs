@@ -14,16 +14,12 @@ var venda4 = new Vendas(4, 4000, vendedor2.Cpf);
 var venda5 = new Vendas(5, 5000, vendedor2.Cpf);
 var venda6 = new Vendas(6, 6000, vendedor2.Cpf);
 
-
 vendedor1.ListaVendas.Add(venda1);
 vendedor1.ListaVendas.Add(venda2);
 vendedor1.ListaVendas.Add(venda3);
 vendedor2.ListaVendas.Add(venda4);
 vendedor2.ListaVendas.Add(venda5);
 vendedor2.ListaVendas.Add(venda6);
-
-vendedor1.CalcularSalario();
-vendedor2.CalcularSalario();
 
 Console.WriteLine(empresa.ListarVendedores());
 Console.WriteLine(vendedor1.ListarInfosVendedor());
