@@ -10,6 +10,21 @@
         {
             try 
             {
+                if(vendedor == null)
+                {
+                    throw new Exception("Vendedor não pode ser nulo");
+                }
+
+                if(Vendedores.Contains(vendedor))
+                {
+                    throw new Exception("Vendedor já cadastrado");
+                }
+                
+                if(vendedor.CnpjEmpresa != Cnpj)
+                {
+                    throw new Exception("Vendedor não pertence a essa empresa");
+                }
+
                 Vendedores.Add(vendedor);
             }
             catch (Exception e)
@@ -21,6 +36,16 @@
         {
             try
             {
+                if(!Vendedores.Contains(vendedor))
+                {
+                    throw new Exception("Vendedor não encontrado");
+                }
+                
+                if(vendedor == null)
+                {
+                    throw new Exception("Vendedor não pode ser nulo");
+                }
+
                 Vendedores.Remove(vendedor);
             }
             catch (Exception e)

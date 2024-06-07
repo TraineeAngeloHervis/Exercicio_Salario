@@ -21,7 +21,23 @@ public class Vendedor(string cpf,
     {
         try
         {
-            if (ListaVendas == null || ListaVendas.Count == 0)
+            if (ListaVendas == null || ListaVendas.Count == 0 )
+            {
+                return SalarioFixo;
+            }
+            if (PercentualComissao < 0)
+            {
+                throw new Exception("Percentual de comissão não pode ser negativo");
+            }
+            if (SalarioFixo < 0)
+            {
+                throw new Exception("Salário fixo não pode ser negativo");
+            }
+            if (ListaVendas.Any(v => v.ValorVenda < 0))
+            {
+                throw new Exception("Valor de venda não pode ser negativo");
+            }
+            if(PercentualComissao == 0)
             {
                 return SalarioFixo;
             }
