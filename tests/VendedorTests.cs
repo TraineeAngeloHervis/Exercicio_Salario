@@ -14,7 +14,7 @@ public class VendedorTests
 
         // Act
         var salario = vendedor.CalcularSalario();
-        var resultadoEsperado = vendedor.SalarioFixo + (venda1.ValorVenda * vendedor.PercentualComissao);
+        var resultadoEsperado = 1150;
 
         // Assert
         Assert.Equal(resultadoEsperado, salario);
