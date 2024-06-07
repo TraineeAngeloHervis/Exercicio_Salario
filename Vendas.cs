@@ -1,9 +1,15 @@
 namespace Exercicio_Salario
 {
-    public class Vendas( int id, decimal valorVenda, string cpfVendedor)
+    public class Vendas
     {
-        public int Id { get;} = id;
-        public decimal ValorVenda { get;} = valorVenda;
-        public string CpfVendedor { get;} = cpfVendedor;
-    }
+        private static int _id = 1;
+        public int Id { get; init; }
+        public required decimal ValorVenda { get; init; }
+        public required string CpfVendedor { get; init; }
+
+        public Vendas()
+        {
+            Id = _id++;
+        }
+}
 }

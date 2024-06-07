@@ -8,15 +8,41 @@
 
         public void AdicionarVendedor(Vendedor vendedor)
         {
-            Vendedores.Add(vendedor);
+            try 
+            {
+                Vendedores.Add(vendedor);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao adicionar vendedor", e);
+            }
         }
         public void RemoverVendedor(Vendedor vendedor)
         {
-            Vendedores.Remove(vendedor);
+            try
+            {
+                Vendedores.Remove(vendedor);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao remover vendedor", e);
+            }
         }
         public string ListarVendedores()
         {
-            return Vendedores.Aggregate("", (current, vendedor) => current + (vendedor.ListarInfosVendedor() + "\n"));
+            try 
+            {
+                var listaVendedores = "";
+                foreach (var vendedor in Vendedores)
+                {
+                    listaVendedores += vendedor.ListarInfosVendedor() + "\n";
+                }
+                return listaVendedores;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao listar vendedores", e);
+            }
         }
     }
 }
