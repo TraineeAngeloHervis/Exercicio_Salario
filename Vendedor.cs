@@ -21,7 +21,7 @@ public class Vendedor(string cpf,
     {
         try
         {
-            if (ListaVendas == null || ListaVendas.Count == 0 )
+            if (ListaVendas == null || ListaVendas.Count == 0 || PercentualComissao == 0)
             {
                 return SalarioFixo;
             }
@@ -36,10 +36,6 @@ public class Vendedor(string cpf,
             if (ListaVendas.Any(v => v.ValorVenda < 0))
             {
                 throw new Exception("Valor de venda não pode ser negativo");
-            }
-            if(PercentualComissao == 0)
-            {
-                return SalarioFixo;
             }
             var totalVendas = ListaVendas.Sum(v => v.ValorVenda);
             var totalComissao = totalVendas * PercentualComissao;

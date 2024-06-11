@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Exercicio_Salario.tests;
+namespace Exercicio_Salario.tests.vendedor;
 
 public class VendedorTests
 {
