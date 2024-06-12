@@ -4,11 +4,24 @@ namespace Exercicio_Salario.tests.vendedor;
 
 public class VendedorTests
 {
+    private static Vendedor GerarVendedor()
+    {
+        return new Vendedor()
+    }
+    
     [Fact]
     public void DadoVendedorComVendas_QuandoCalcularSalario_DeveRetornarSalarioCorreto()
     {
         // Arrange
-        var vendedor = new Vendedor("123456789", "123456789", "Vendedor 1", 0.15m, 1000, [], "");
+        var vendedor = new Vendedor
+        {
+            Cpf = "123456789",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 1",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
         var venda1 = new Vendas
         {
             ValorVenda = 1000,
@@ -28,7 +41,15 @@ public class VendedorTests
     public void DadoVendedorSemVendas_QuandoCalcularSalario_DeveRetornarSalarioFixo()
     {
         // Arrange
-        var vendedor = new Vendedor("123456789", "123456789", "Vendedor 1", 0.15m, 1000, [],"");
+        var vendedor = new Vendedor
+        {
+            Cpf = "123456789",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 1",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
 
         // Act
         var salario = vendedor.CalcularSalario();
@@ -42,7 +63,15 @@ public class VendedorTests
     public void DadoVendedorComInfosCorretas_QuandoListarInfosVendedor_DeveRetornarInfosCorretas()
     {
         // Arrange
-        var vendedor = new Vendedor("123456789", "123456789", "Vendedor 1", 0.15m, 1000, [], "");
+        var vendedor = new Vendedor
+        {
+            Cpf = "123456789",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 1",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
         var venda1 = new Vendas
         {
             ValorVenda = 1000,
@@ -68,7 +97,15 @@ public class VendedorTests
     {
         // Arrange
         var empresa = new Empresa("123456789", "Empresa 1");
-        var vendedor = new Vendedor("123456789", "123456789", "Vendedor 1", 0.15m, 1000, [], "");
+        var vendedor = new Vendedor
+        {
+            Cpf = "123456789",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 1",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
 
         // Act
         empresa.AdicionarVendedor(vendedor);
@@ -82,7 +119,15 @@ public class VendedorTests
     {
         // Arrange
         var empresa = new Empresa("123456789", "Empresa 1");
-        var vendedor = new Vendedor("123456789", "123456789", "Vendedor 1", 0.15m, 1000, [], "");
+        var vendedor = new Vendedor
+        {
+            Cpf = "123456789",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 1",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
         empresa.AdicionarVendedor(vendedor);
 
         // Act
@@ -97,8 +142,24 @@ public class VendedorTests
     {
         // Arrange
         var empresa = new Empresa("123456789", "Empresa 1");
-        var vendedor1 = new Vendedor("123456789", "123456789", "Vendedor 1", 0.15m, 1000, [], "");
-        var vendedor2 = new Vendedor("987654321", "123456789", "Vendedor 2", 0.15m, 1000, [], "");
+        var vendedor1 = new Vendedor
+        {
+            Cpf = "123456789",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 1",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
+        var vendedor2 = new Vendedor
+        {
+            Cpf = "987654321",
+            CnpjEmpresa = "123456789",
+            Nome = "Vendedor 2",
+            PercentualComissao = 0.15m,
+            SalarioFixo = 1000,
+            ListaVendas = []
+        };
         empresa.AdicionarVendedor(vendedor1);
         empresa.AdicionarVendedor(vendedor2);
         

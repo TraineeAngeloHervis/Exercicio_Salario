@@ -1,4 +1,6 @@
-﻿namespace Exercicio_Salario
+﻿using System.Text;
+
+namespace Exercicio_Salario
 {
     public class Empresa(string cnpj, string nome)
     {
@@ -8,66 +10,41 @@
 
         public void AdicionarVendedor(Vendedor vendedor)
         {
-            try 
+            if (vendedor == null)
             {
-                if(vendedor == null)
-                {
-                    throw new Exception("Vendedor não pode ser nulo");
-                }
-
-                if(Vendedores.Contains(vendedor))
-                {
-                    throw new Exception("Vendedor já cadastrado");
-                }
-                
-                if(vendedor.CnpjEmpresa != Cnpj)
-                {
-                    throw new Exception("Vendedor não pertence a essa empresa");
-                }
-
-                Vendedores.Add(vendedor);
+                throw new ArgumentNullException(nameof(vendedor), "Vendedor não pode ser nulo");
             }
-            catch (Exception e)
+
+            if (Vendedores.Exists(v => v.Cpf == vendedor.Cpf))
             {
-                throw new Exception("Erro ao adicionar vendedor", e);
+                throw new InvalidOperationException("Vendedor já cadastrado");
             }
+
+            Vendedores.Add(vendedor);
         }
         public void RemoverVendedor(Vendedor vendedor)
         {
-            try
+            if (vendedor == null)
             {
-                if(!Vendedores.Contains(vendedor))
-                {
-                    throw new Exception("Vendedor não encontrado");
-                }
-                
-                if(vendedor == null)
-                {
-                    throw new Exception("Vendedor não pode ser nulo");
-                }
+                throw new ArgumentNullException(nameof(vendedor), "Vendedor não pode ser nulo");
+            }
+    
+            if (!Vendedores.Contains(vendedor))
+            {
+                throw new InvalidOperationException("Vendedor não encontrado");
+            }
 
-                Vendedores.Remove(vendedor);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao remover vendedor", e);
-            }
+            Vendedores.Remove(vendedor);
         }
+
         public string ListarVendedores()
         {
-            try 
+            var infosVendedores = new StringBuilder();
+            foreach (var vendedor in Vendedores)
             {
-                var listaVendedores = "";
-                foreach (var vendedor in Vendedores)
-                {
-                    listaVendedores += vendedor.ListarInfosVendedor() + "\n";
-                }
-                return listaVendedores;
+                infosVendedores.Append(vendedor.ListarInfosVendedor());
             }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao listar vendedores", e);
-            }
+            return infosVendedores.ToString();
         }
     }
 }
