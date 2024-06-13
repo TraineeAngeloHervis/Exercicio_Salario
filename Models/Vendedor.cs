@@ -1,13 +1,15 @@
-namespace Exercicio_Salario;
+using Exercicio_Salario.Exceptions;
+
+namespace Exercicio_Salario.Models;
 
 public class Vendedor
 {
-    public string Cpf { get; init; }
+    public string Cpf { get; set; }
     public string CnpjEmpresa { get; init; }
     public string Nome { get; set; }
     public decimal PercentualComissao { get; set; } 
     public decimal SalarioFixo { get; set; } 
-    public List<Vendas> ListaVendas { get; set; }
+    public List<Venda> Vendas { get; set; }
     public string InfosVendedor { get; set; }
     public Empresa Empresa { get; set; }
     
@@ -16,29 +18,29 @@ public class Vendedor
         Cpf = "";
         CnpjEmpresa = "";
         Nome = "";
-        ListaVendas = [];
+        Vendas = [];
     }
         
     public decimal CalcularSalario()
     {
         
-            if (ListaVendas == null || ListaVendas.Count == 0 || PercentualComissao == 0)
+            if (Vendas == null || Vendas.Count == 0 || PercentualComissao == 0)
             {
                 return SalarioFixo;
             }
             if (PercentualComissao < 0)
             {
-                throw new Exception("Percentual de comissão não pode ser negativo");
+                throw new ComissaoNegativaException("Percentual de comissão não pode ser negativo");
             }
             if (SalarioFixo < 0)
             {
-                throw new Exception("Salário fixo não pode ser negativo");
+                throw new SalarioNegativoException("Salário fixo não pode ser negativo");
             }
-            if (ListaVendas.Exists(v => v.ValorVenda < 0))
+            if (Vendas.Exists(v => v.ValorVenda < 0))
             {
-                throw new Exception("Valor de venda não pode ser negativo");
+                throw new ValorVendaNegativoException("Valor de venda não pode ser negativo");
             }
-            var totalVendas = ListaVendas.Sum(v => v.ValorVenda);
+            var totalVendas = Vendas.Sum(v => v.ValorVenda);
             var totalComissao = totalVendas * PercentualComissao;
 
             return SalarioFixo + totalComissao;
