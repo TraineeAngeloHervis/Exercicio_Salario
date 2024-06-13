@@ -1,38 +1,57 @@
-namespace Exercicio_Salario
+namespace Exercicio_Salario;
+
+public class Vendedor
 {
-    public class Vendedor( string cpf, string cnpjEmpresa, string nome, decimal percentualComissao, decimal salarioFixo, List<Vendas> listaVendas)
+    public string Cpf { get; init; }
+    public string CnpjEmpresa { get; init; }
+    public string Nome { get; set; }
+    public decimal PercentualComissao { get; set; } 
+    public decimal SalarioFixo { get; set; } 
+    public List<Vendas> ListaVendas { get; set; }
+    public string InfosVendedor { get; set; }
+    public Empresa Empresa { get; set; }
+    
+    public Vendedor()
     {
-        public string Cpf { get; } = cpf;
-        public string CnpjEmpresa { get; } = cnpjEmpresa;
-        public string Nome { get; private set; } = nome;
-        public decimal PercentualComissao { get; set; } = percentualComissao;
-        public decimal SalarioFixo { get; set; } = salarioFixo;
-        public List<Vendas> ListaVendas { get; set; } = listaVendas; 
-        public Empresa Empresa { get; set; }
+        Cpf = "";
+        CnpjEmpresa = "";
+        Nome = "";
+        ListaVendas = [];
+    }
         
-        public decimal CalcularSalario()
-        {
-            if (ListaVendas == null || ListaVendas.Count == 0)
+    public decimal CalcularSalario()
+    {
+        
+            if (ListaVendas == null || ListaVendas.Count == 0 || PercentualComissao == 0)
             {
                 return SalarioFixo;
             }
-            
+            if (PercentualComissao < 0)
+            {
+                throw new Exception("Percentual de comissão não pode ser negativo");
+            }
+            if (SalarioFixo < 0)
+            {
+                throw new Exception("Salário fixo não pode ser negativo");
+            }
+            if (ListaVendas.Exists(v => v.ValorVenda < 0))
+            {
+                throw new Exception("Valor de venda não pode ser negativo");
+            }
             var totalVendas = ListaVendas.Sum(v => v.ValorVenda);
             var totalComissao = totalVendas * PercentualComissao;
 
             return SalarioFixo + totalComissao;
-        }
+    }
 
-        public string ListarInfosVendedor()
-        {
-            var salarioTotal = CalcularSalario();
-
-            return $"Nome: {Nome}\n" +
-                   $"CPF: {Cpf}\n" +
-                   $"CNPJ da Empresa: {CnpjEmpresa}" +
-                   $"\nSalário Fixo: {SalarioFixo}" +
-                   $"\nPercentual de Comissão: {PercentualComissao}" +
-                   $"\nSalário Total: {salarioTotal}";
-        }
+    public string ListarInfosVendedor()
+    {
+        var infosVendedor = $"Nome: {Nome}\n" +
+                            $"CPF: {Cpf}\n" +
+                            $"CNPJ da Empresa: {CnpjEmpresa}\n" +
+                            $"Salário Fixo: {SalarioFixo}\n" +
+                            $"Percentual de Comissão: {PercentualComissao:P}\n" +
+                            $"Salário Total: R$ {CalcularSalario():N2}";
+        return infosVendedor;
     }
 }

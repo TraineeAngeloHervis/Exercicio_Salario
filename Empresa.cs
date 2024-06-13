@@ -1,4 +1,6 @@
-﻿namespace Exercicio_Salario
+﻿using System.Text;
+
+namespace Exercicio_Salario
 {
     public class Empresa(string cnpj, string nome)
     {
@@ -8,15 +10,41 @@
 
         public void AdicionarVendedor(Vendedor vendedor)
         {
+            if (vendedor == null)
+            {
+                throw new ArgumentNullException(nameof(vendedor), "Vendedor não pode ser nulo");
+            }
+
+            if (Vendedores.Exists(v => v.Cpf == vendedor.Cpf))
+            {
+                throw new InvalidOperationException("Vendedor já cadastrado");
+            }
+
             Vendedores.Add(vendedor);
         }
         public void RemoverVendedor(Vendedor vendedor)
         {
+            if (vendedor == null)
+            {
+                throw new ArgumentNullException(nameof(vendedor), "Vendedor não pode ser nulo");
+            }
+    
+            if (!Vendedores.Contains(vendedor))
+            {
+                throw new InvalidOperationException("Vendedor não encontrado");
+            }
+
             Vendedores.Remove(vendedor);
         }
+
         public string ListarVendedores()
         {
-            return Vendedores.Aggregate("", (current, vendedor) => current + (vendedor.ListarInfosVendedor() + "\n"));
+            var infosVendedores = new StringBuilder();
+            foreach (var vendedor in Vendedores)
+            {
+                infosVendedores.Append(vendedor.ListarInfosVendedor());
+            }
+            return infosVendedores.ToString();
         }
     }
 }
