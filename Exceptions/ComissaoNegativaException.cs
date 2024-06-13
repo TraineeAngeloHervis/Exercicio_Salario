@@ -3,6 +3,7 @@
 public class ComissaoNegativaException : Exception
 {
     public ComissaoNegativaException()
+        : base("Comissão não pode ser negativa")
     {
     }
     

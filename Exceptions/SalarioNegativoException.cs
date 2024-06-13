@@ -3,6 +3,7 @@
 public class SalarioNegativoException : Exception
 {
     public SalarioNegativoException()
+        : base("Salário não pode ser negativo")
     {
     }
     

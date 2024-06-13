@@ -3,6 +3,7 @@
 public class VendedorCadastradoException : Exception
 {
     public VendedorCadastradoException()
+        : base("Vendedor já cadastrado")
     {
     }
     

@@ -3,6 +3,7 @@
 public class VendedorNaoEncontradoException : Exception
 {
     public VendedorNaoEncontradoException()
+        : base("Vendedor não encontrado")
     {
     }
     

@@ -3,6 +3,7 @@
 public class ValorVendaNegativoException : Exception
 {
     public ValorVendaNegativoException()
+        : base("Valor da venda não pode ser negativo")
     {
     }
     

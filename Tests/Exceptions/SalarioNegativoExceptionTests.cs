@@ -9,7 +9,7 @@ public class SalarioNegativoExceptionTests
     public void DadoSalarioNegativo_QuandoInstanciar_DeveRetornarMensagemCorreta()
     {
         // Arrange
-        const string mensagemEsperada = "Salário fixo não pode ser negativo";
+        const string mensagemEsperada = "Salário não pode ser negativo";
 
         // Act
         var exception = new SalarioNegativoException();
