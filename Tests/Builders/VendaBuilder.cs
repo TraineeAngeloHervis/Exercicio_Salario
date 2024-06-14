@@ -1,6 +1,6 @@
 ﻿using Exercicio_Salario.Models;
 
-namespace Exercicio_Salario.Builders;
+namespace Exercicio_Salario.Tests.Builders;
 
 public class VendaBuilder
 {

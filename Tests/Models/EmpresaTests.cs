@@ -1,7 +1,7 @@
-﻿using Exercicio_Salario.Builders;
+﻿using Exercicio_Salario.Tests.Builders;
 using Xunit;
 
-namespace Exercicio_Salario.tests.empresa;
+namespace Exercicio_Salario.Tests.Models;
 
 public class EmpresaTests
 {
