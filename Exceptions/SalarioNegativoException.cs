@@ -6,12 +6,12 @@ public class SalarioNegativoException : Exception
         : base("Salário não pode ser negativo")
     {
     }
-    
+
     public SalarioNegativoException(string message)
         : base(message)
     {
     }
-    
+
     public SalarioNegativoException(string message, Exception inner)
         : base(message, inner)
     {

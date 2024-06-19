@@ -6,12 +6,12 @@ public class VendedorNaoEncontradoException : Exception
         : base("Vendedor não encontrado")
     {
     }
-    
+
     public VendedorNaoEncontradoException(string message)
         : base(message)
     {
     }
-    
+
     public VendedorNaoEncontradoException(string message, Exception inner)
         : base(message, inner)
     {

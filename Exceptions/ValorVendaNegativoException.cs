@@ -6,12 +6,12 @@ public class ValorVendaNegativoException : Exception
         : base("Valor da venda não pode ser negativo")
     {
     }
-    
+
     public ValorVendaNegativoException(string message)
         : base(message)
     {
     }
-    
+
     public ValorVendaNegativoException(string message, Exception inner)
         : base(message, inner)
     {

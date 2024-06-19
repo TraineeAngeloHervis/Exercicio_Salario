@@ -1,75 +1,100 @@
-﻿using Exercicio_Salario.Models;
+﻿using Bogus;
+using Bogus.Extensions.Brazil;
+using Exercicio_Salario.Models;
 
 namespace Exercicio_Salario.Tests.Builders;
 
 public class VendedorBuilder
 {
-    private string _cpf = "12345678910";
-    private string _cnpjEmpresa = "01234567000189";
-    private string _nome = "Vendedor 1";
-    private decimal _percentualComissao = 0.15m;
-    private decimal _salarioFixo = 1000;
-    private List<Venda> _vendas = [];
-    private Empresa _empresa = new();
-    
+    private readonly Faker<Vendedor> _faker;
+
+    private VendedorBuilder()
+    {
+        _faker = new Faker<Vendedor>().CustomInstantiator(f => new Vendedor()
+        {
+            Cpf = f.Person.Cpf(false),
+            CnpjEmpresa = f.Company.Cnpj(false),
+            Nome = f.Person.FirstName,
+            PercentualComissao = f.Random.Decimal(0, 100),
+            SalarioFixo = f.Random.Decimal(0, 100000),
+            Vendas = [],
+            Empresa = new Empresa()
+        });
+    }
+
+    public static VendedorBuilder Novo()
+        => new();
+
     public VendedorBuilder ComCpf(string cpf)
     {
-        _cpf = cpf;
+        _faker.RuleFor(u => u.Cpf, cpf);
         return this;
     }
-    
+
     public VendedorBuilder ComCnpjEmpresa(string cnpjEmpresa)
     {
-        _cnpjEmpresa = cnpjEmpresa;
+        _faker.RuleFor(u => u.CnpjEmpresa, cnpjEmpresa);
         return this;
     }
-    
+
     public VendedorBuilder ComNome(string nome)
     {
-        _nome = nome;
+        _faker.RuleFor(u => u.Nome, nome);
         return this;
     }
-    
+
     public VendedorBuilder ComPercentualComissao(decimal percentualComissao)
     {
-        _percentualComissao = percentualComissao;
+        _faker.RuleFor(u => u.PercentualComissao, percentualComissao);
         return this;
     }
-    
+
     public VendedorBuilder ComSalarioFixo(decimal salarioFixo)
     {
-        _salarioFixo = salarioFixo;
+        _faker.RuleFor(u => u.SalarioFixo, salarioFixo);
         return this;
     }
-    
-    public VendedorBuilder ComListaVendas(List<Venda> vendas)
+
+    public VendedorBuilder ComVendas(List<Venda> vendas)
     {
-        _vendas = vendas;
+        _faker.RuleFor(u => u.Vendas, vendas.Select(v => new Venda
+        {
+            ValorVenda = v.ValorVenda,
+            CpfVendedor = v.CpfVendedor
+        }).ToList());
         return this;
     }
-    
+
     public VendedorBuilder ComEmpresa(Empresa empresa)
     {
-        _empresa = empresa;
+        _faker.RuleFor(u => u.Empresa, empresa);
         return this;
     }
-    
-    public Vendedor Build()
+
+    public VendedorBuilder ObterVendedorPadrao()
     {
-        return new Vendedor
-        {
-            Cpf = _cpf,
-            CnpjEmpresa = _cnpjEmpresa,
-            Nome = _nome,
-            PercentualComissao = _percentualComissao,
-            SalarioFixo = _salarioFixo,
-            Vendas = _vendas,
-            Empresa = _empresa
-        };
+        _faker.RuleFor(u => u.Cpf, "12345678910");
+        _faker.RuleFor(u => u.CnpjEmpresa, "01234567000189");
+        _faker.RuleFor(u => u.Nome, "Vendedor 1");
+        _faker.RuleFor(u => u.PercentualComissao, 0.15m);
+        _faker.RuleFor(u => u.SalarioFixo, 1000);
+        _faker.RuleFor(u => u.Vendas, []);
+        _faker.RuleFor(u => u.Empresa, new Empresa());
+        return this;
     }
-    
-    public static Vendedor ObterVendedorPadrao()
+
+    public Vendedor Build()
+        => _faker.Generate();
+
+    public string ListarInfosVendedor()
     {
-        return new VendedorBuilder().Build();
+        var vendedor = _faker.Generate();
+        return vendedor.ListarInfosVendedor();
+    }
+
+    public decimal CalcularSalario()
+    {
+        var vendedor = _faker.Generate();
+        return vendedor.CalcularSalario();
     }
 }
