@@ -9,7 +9,7 @@ public class VendedorTests
     public void DadoVendedorComVendas_QuandoCalcularSalario_DeveRetornarSalarioCorreto()
     {
         // Arrange
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
 
         // Act
@@ -20,12 +20,12 @@ public class VendedorTests
         // Assert
         Assert.Equal(resultadoEsperado, salario);
     }
-    
+
     [Fact]
     public void DadoVendedorSemVendas_QuandoCalcularSalario_DeveRetornarSalarioFixo()
     {
         // Arrange
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
 
         // Act
         var salario = vendedor.CalcularSalario();
@@ -34,14 +34,14 @@ public class VendedorTests
         // Assert
         Assert.Equal(resultadoEsperado, salario);
     }
-    
+
     [Fact]
     public void DadoVendedorComInfosCorretas_QuandoListarInfosVendedor_DeveRetornarInfosCorretas()
     {
         // Arrange
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
-        
+
         // Act
         vendedor.Vendas.Add(venda1);
         var infosVendedor = vendedor.ListarInfosVendedor();
@@ -55,32 +55,32 @@ public class VendedorTests
         // Assert
         Assert.Equal(resultadoEsperado, infosVendedor);
     }
-    
+
     [Fact]
     public void DadoVendedor_QuandoAdicionarVenda_DeveAdicionarVendaAoVendedor()
     {
         // Arrange
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
-        
+
         // Act
         vendedor.Vendas.Add(venda1);
-        
+
         // Assert
         Assert.Contains(venda1, vendedor.Vendas);
     }
-    
+
     [Fact]
     public void DadoVendedor_QuandoRemoverVenda_DeveRemoverVendaDoVendedor()
     {
         // Arrange
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
-        
+
         // Act
         vendedor.Vendas.Add(venda1);
         vendedor.Vendas.Remove(venda1);
-        
+
         // Assert
         Assert.DoesNotContain(venda1, vendedor.Vendas);
     }

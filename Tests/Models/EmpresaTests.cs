@@ -9,8 +9,8 @@ public class EmpresaTests
     public void DadoEmpresa_QuandoAdicionarVendedor_DeveAdicionarVendedor()
     {
         // Arrange
-        var empresa = EmpresaBuilder.ObterEmpresaPadrao();
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var empresa = EmpresaBuilder.Novo().Build();
+        var vendedor = VendedorBuilder.Novo().Build();
 
         // Act
         empresa.AdicionarVendedor(vendedor);
@@ -23,8 +23,8 @@ public class EmpresaTests
     public void DadoEmpresa_QuandoRemoverVendedor_DeveRemoverVendedor()
     {
         // Arrange
-        var empresa = EmpresaBuilder.ObterEmpresaPadrao();
-        var vendedor = VendedorBuilder.ObterVendedorPadrao();
+        var empresa = EmpresaBuilder.Novo().Build();
+        var vendedor = VendedorBuilder.Novo().Build();
         empresa.AdicionarVendedor(vendedor);
 
         // Act
@@ -33,18 +33,27 @@ public class EmpresaTests
         // Assert
         Assert.DoesNotContain(vendedor, empresa.Vendedores);
     }
-    
+
     [Fact]
     public void DadoEmpresa_QuandoListarVendedores_DeveRetornarInfosCorretas()
     {
         // Arrange
-        var empresa = EmpresaBuilder.ObterEmpresaPadrao();
-        var vendedor1 = VendedorBuilder.ObterVendedorPadrao();
-        var vendedor2 = VendedorBuilder.ObterVendedorPadrao();
-        
-        vendedor2.Cpf = "10987654321";
-        vendedor2.Nome = "Vendedor 2";
-        
+        var empresa = EmpresaBuilder.Novo().Build();
+        var vendedor1 = VendedorBuilder.Novo().ComNome("Vendedor 1")
+            .ComCpf("12345678910")
+            .ComCnpjEmpresa("01234567000189")
+            .ComSalarioFixo(1000)
+            .ComPercentualComissao(0.15m)
+            .Build();
+
+
+        var vendedor2 = VendedorBuilder.Novo().ComNome("Vendedor 2")
+            .ComCpf("10987654321")
+            .ComCnpjEmpresa("01234567000189")
+            .ComSalarioFixo(1000)
+            .ComPercentualComissao(0.15m)
+            .Build();
+
         empresa.AdicionarVendedor(vendedor1);
         empresa.AdicionarVendedor(vendedor2);
         const string resultadoEsperado = "Nome: Vendedor 1\n" +
@@ -62,7 +71,7 @@ public class EmpresaTests
 
         // Act
         var listaVendedores = empresa.ListarVendedores();
-        
+
         // Assert
         Assert.Equal(resultadoEsperado, listaVendedores);
     }

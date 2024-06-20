@@ -7,12 +7,11 @@ public class Vendedor
     public string Cpf { get; set; }
     public string CnpjEmpresa { get; init; }
     public string Nome { get; set; }
-    public decimal PercentualComissao { get; set; } 
-    public decimal SalarioFixo { get; set; } 
+    public decimal PercentualComissao { get; set; }
+    public decimal SalarioFixo { get; set; }
     public List<Venda> Vendas { get; set; }
-    public string InfosVendedor { get; set; }
     public Empresa Empresa { get; set; }
-    
+
     public Vendedor()
     {
         Cpf = "";
@@ -20,30 +19,28 @@ public class Vendedor
         Nome = "";
         Vendas = [];
     }
-        
+
     public decimal CalcularSalario()
     {
-        
-            if (Vendas == null || Vendas.Count == 0 || PercentualComissao == 0)
-            {
-                return SalarioFixo;
-            }
-            if (PercentualComissao < 0)
-            {
-                throw new ComissaoNegativaException("Percentual de comissão não pode ser negativo");
-            }
-            if (SalarioFixo < 0)
-            {
-                throw new SalarioNegativoException("Salário fixo não pode ser negativo");
-            }
-            if (Vendas.Exists(v => v.ValorVenda < 0))
-            {
-                throw new ValorVendaNegativoException("Valor de venda não pode ser negativo");
-            }
-            var totalVendas = Vendas.Sum(v => v.ValorVenda);
-            var totalComissao = totalVendas * PercentualComissao;
+        if (PercentualComissao < 0)
+        {
+            throw new ComissaoNegativaException();
+        }
 
-            return SalarioFixo + totalComissao;
+        if (SalarioFixo < 0)
+        {
+            throw new SalarioNegativoException();
+        }
+
+        if (Vendas.Exists(v => v.ValorVenda < 0))
+        {
+            throw new ValorVendaNegativoException();
+        }
+
+        var totalVendas = Vendas.Sum(v => v.ValorVenda);
+        var totalComissao = totalVendas * PercentualComissao;
+
+        return SalarioFixo + totalComissao;
     }
 
     public string ListarInfosVendedor()

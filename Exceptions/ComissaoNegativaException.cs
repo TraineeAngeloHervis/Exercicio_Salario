@@ -6,12 +6,12 @@ public class ComissaoNegativaException : Exception
         : base("Comissão não pode ser negativa")
     {
     }
-    
+
     public ComissaoNegativaException(string message)
         : base(message)
     {
     }
-    
+
     public ComissaoNegativaException(string message, Exception inner)
         : base(message, inner)
     {
