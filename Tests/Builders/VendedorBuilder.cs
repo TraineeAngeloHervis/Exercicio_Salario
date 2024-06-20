@@ -71,18 +71,6 @@ public class VendedorBuilder
         return this;
     }
 
-    public VendedorBuilder ObterVendedorPadrao()
-    {
-        _faker.RuleFor(u => u.Cpf, "12345678910");
-        _faker.RuleFor(u => u.CnpjEmpresa, "01234567000189");
-        _faker.RuleFor(u => u.Nome, "Vendedor 1");
-        _faker.RuleFor(u => u.PercentualComissao, 0.15m);
-        _faker.RuleFor(u => u.SalarioFixo, 1000);
-        _faker.RuleFor(u => u.Vendas, []);
-        _faker.RuleFor(u => u.Empresa, new Empresa());
-        return this;
-    }
-
     public Vendedor Build()
         => _faker.Generate();
 

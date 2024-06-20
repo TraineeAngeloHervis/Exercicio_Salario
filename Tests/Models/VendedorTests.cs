@@ -9,7 +9,10 @@ public class VendedorTests
     public void DadoVendedorComVendas_QuandoCalcularSalario_DeveRetornarSalarioCorreto()
     {
         // Arrange
-        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
+        var vendedor = VendedorBuilder.Novo().
+            ComSalarioFixo(1000).
+            ComPercentualComissao(0.15m).
+            Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
 
         // Act
@@ -25,7 +28,9 @@ public class VendedorTests
     public void DadoVendedorSemVendas_QuandoCalcularSalario_DeveRetornarSalarioFixo()
     {
         // Arrange
-        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
+        var vendedor = VendedorBuilder.Novo().
+            ComSalarioFixo(1000).
+            Build();
 
         // Act
         var salario = vendedor.CalcularSalario();
@@ -39,7 +44,13 @@ public class VendedorTests
     public void DadoVendedorComInfosCorretas_QuandoListarInfosVendedor_DeveRetornarInfosCorretas()
     {
         // Arrange
-        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
+        var vendedor = VendedorBuilder.Novo().
+            ComNome("Vendedor 1").
+            ComCpf("12345678910").
+            ComCnpjEmpresa("01234567000189").
+            ComSalarioFixo(1000).
+            ComPercentualComissao(0.15m).
+            Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
 
         // Act
@@ -60,7 +71,7 @@ public class VendedorTests
     public void DadoVendedor_QuandoAdicionarVenda_DeveAdicionarVendaAoVendedor()
     {
         // Arrange
-        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
+        var vendedor = VendedorBuilder.Novo().Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
 
         // Act
@@ -74,7 +85,7 @@ public class VendedorTests
     public void DadoVendedor_QuandoRemoverVenda_DeveRemoverVendaDoVendedor()
     {
         // Arrange
-        var vendedor = VendedorBuilder.Novo().ObterVendedorPadrao().Build();
+        var vendedor = VendedorBuilder.Novo().Build();
         var venda1 = VendaBuilder.ObterVendaPadrao();
 
         // Act

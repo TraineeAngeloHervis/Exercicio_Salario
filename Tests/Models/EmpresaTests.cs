@@ -39,20 +39,21 @@ public class EmpresaTests
     {
         // Arrange
         var empresa = EmpresaBuilder.Novo().Build();
-        var vendedor1 = VendedorBuilder.Novo().ComNome("Vendedor 1")
-            .ComCpf("12345678910")
-            .ComCnpjEmpresa("01234567000189")
-            .ComSalarioFixo(1000)
-            .ComPercentualComissao(0.15m)
-            .Build();
-
-
-        var vendedor2 = VendedorBuilder.Novo().ComNome("Vendedor 2")
-            .ComCpf("10987654321")
-            .ComCnpjEmpresa("01234567000189")
-            .ComSalarioFixo(1000)
-            .ComPercentualComissao(0.15m)
-            .Build();
+        var vendedor1 = VendedorBuilder.Novo().
+            ComNome("Vendedor 1").
+            ComCpf("12345678910").
+            ComCnpjEmpresa("01234567000189").
+            ComSalarioFixo(1000).
+            ComPercentualComissao(0.15m).
+            Build();
+        
+        var vendedor2 = VendedorBuilder.Novo().
+            ComNome("Vendedor 2").
+            ComCpf("10987654321").
+            ComCnpjEmpresa("01234567000189").
+            ComSalarioFixo(1000).
+            ComPercentualComissao(0.15m).
+            Build();
 
         empresa.AdicionarVendedor(vendedor1);
         empresa.AdicionarVendedor(vendedor2);
